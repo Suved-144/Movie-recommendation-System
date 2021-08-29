@@ -85,6 +85,10 @@ def recommend():
     genres = request.form['genres']
     overview = request.form['overview']
     vote_count = request.form['vote_count']
+    
+    runtime = request.form['runtime']
+    
+
     rec_movies = request.form['rec_movies']
     rec_posters = request.form['rec_posters']
 
@@ -94,8 +98,8 @@ def recommend():
     # call the convert_to_list function for every string that needs to be converted to list
     rec_movies = convert_to_list(rec_movies)
     rec_posters = convert_to_list(rec_posters)
-    
-   
+
+
     # combining multiple lists as a dictionary which can be passed to the html file so that it can be processed easily and the order of information will be preserved
     movie_cards = {rec_posters[i]: rec_movies[i] for i in range(len(rec_posters))}
 
@@ -103,7 +107,12 @@ def recommend():
     return render_template('recommend.html', title=title, poster=poster, overview=overview,
                            vote_count=vote_count,
                            genres=genres,
+                           
+                           runtime = runtime,
+                           
+
                            movie_cards=movie_cards)
+
 
 
 if __name__ == '__main__':

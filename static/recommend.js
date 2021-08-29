@@ -33,7 +33,7 @@ function recommendcard(e){
 function load_details(title){
   $.ajax({
     type: 'GET',
-    url:'http://www.omdbapi.com/?t=' + title + '&apikey=4633a0a8',
+    url:'https://www.omdbapi.com/?t=' + title + '&apikey=4633a0a8',
 
     success: function(movie){
         $("#loader").fadeIn();
@@ -84,7 +84,7 @@ function movie_recs(movie_title,movie_id){
 function get_movie_details(movie_id,arr,movie_title) {
   $.ajax({
     type:'GET',
-    url:'http://www.omdbapi.com/?i=' + movie_id + '&apikey=4633a0a8',
+    url:'https://www.omdbapi.com/?i=' + movie_id + '&apikey=4633a0a8',
     success: function(movie_details){
       show_details(movie_details,arr,movie_title,movie_id);
     },
@@ -102,10 +102,8 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   var overview = movie_details.Plot;
   var genres = movie_details.Genre;
   var rating = movie_details.imdbRating;
-  var vote_count = movie_details.imdbVotes;
   var runtime = movie_details.Runtime;
-  
-  
+  var vote_count = movie_details.imdbVotes;
   arr_poster = get_movie_posters(arr,my_api_key);
   
   details = {
@@ -116,7 +114,7 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
       'overview':overview,
       'rating':rating,
       'vote_count':vote_count,
-      'runtime':runtime,
+      'runtime' : runtime,
       'rec_movies':JSON.stringify(arr),
       'rec_posters':JSON.stringify(arr_poster),
   }
@@ -143,7 +141,7 @@ function get_movie_posters(arr){
   for(var m in arr) {
     $.ajax({
       type:'GET',
-      url:'http://www.omdbapi.com/?t=' + arr[m] + '&apikey=4633a0a8',
+      url:'https://www.omdbapi.com/?t=' + arr[m] + '&apikey=4633a0a8',
       async: false,
       success: function(m_data){
         arr_poster_list.push(m_data.Poster);
